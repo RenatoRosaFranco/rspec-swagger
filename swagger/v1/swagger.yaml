@@ -30,6 +30,31 @@ paths:
                         description:
                           type: string
                           nullable: true
+    post:
+      summary: Create a task
+      tags:
+      - Tasks
+      parameters: []
+      responses:
+        '201':
+          description: task created sucessfully
+        '422':
+          description: invalid parameters
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                task:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    completed:
+                      type: boolean
+                  required:
+                  - name
   "/api/v1/tasks/{id}":
     get:
       summary: Show task
@@ -44,6 +69,49 @@ paths:
       responses:
         '200':
           description: task found
+        '404':
+          description: task not found
+    put:
+      summary: Update task do
+      tags:
+      - Tasks
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: task updated sucessfully
+        '422':
+          description: invalid update
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                task:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    completed:
+                      type: boolean
+    delete:
+      summary: Delete task
+      tags:
+      - Tasks
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: task deleted sucessfully
         '404':
           description: task not found
 servers:

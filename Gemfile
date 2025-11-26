@@ -52,6 +52,9 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'database_cleaner'
   gem 'factory_bot_rails'
+  gem 'pry-rails'
+  gem 'pry-byebug'
+  gem 'super_awesome_print'
   gem 'faker'
   gem 'ffaker'
 end
