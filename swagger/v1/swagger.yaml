@@ -1,0 +1,50 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/api/v1/tasks":
+    get:
+      summary: List all tasks
+      tags:
+      - Tasks
+      responses:
+        '200':
+          description: Tasks returned with success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  tasks:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        title:
+                          type: string
+                          nullable: true
+                        description:
+                          type: string
+                          nullable: true
+  "/api/v1/tasks/{id}":
+    get:
+      summary: Show task
+      tags:
+      - Tasks
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: task found
+        '404':
+          description: task not found
+servers:
+- url: http://localhost:3000
